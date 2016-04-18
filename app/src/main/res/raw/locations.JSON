@@ -1,0 +1,102 @@
+[
+  {
+    "locationName": "UMD CSIC BUILDING",
+    "lat": 38.990703,
+    "lng": -76.937270,
+    "verifiedSafeSpace": false,
+    "genderNeutralBathroom": false,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Glenn L. Martin BUILDING",
+    "lat": 38.988858,
+    "lng": -76.938072,
+    "verifiedSafeSpace": false,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Hornbake Library",
+    "lat": 38.988134,
+    "lng": -76.941564,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Stamp Student Union",
+    "lat": 38.988111,
+    "lng": -76.944729,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "McKeldin Library",
+    "lat": 38.985968,
+    "lng": -76.945108,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Tawes Fine Arts Building",
+    "lat": 38.986010,
+    "lng": -76.948337,
+    "verifiedSafeSpace": false,
+    "genderNeutralBathroom": false,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Applebee's College Park",
+    "lat": 38.979058,
+    "lng":  -76.938312,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": false,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Starbucks College Park ",
+    "lat": 38.980473,
+    "lng":  -76.939097,
+    "verifiedSafeSpace": false,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Lakelands Park Middle School",
+    "lat": 39.115785,
+    "lng": -77.232394,
+    "verifiedSafeSpace": false,
+    "genderNeutralBathroom": false,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  },
+  {
+    "locationName": "Kentlands Starbucks",
+    "lat": 39.122166,
+    "lng": -77.235275,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": true,
+    "crisisCenter": false,
+    "shelter": false,
+    "friendlyBusiness":true
+  }
+]
