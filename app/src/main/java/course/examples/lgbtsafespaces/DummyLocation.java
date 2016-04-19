@@ -28,5 +28,16 @@ public class DummyLocation extends AppCompatActivity {
             }
         });
 
+        //Home button functionality
+        final Button homeButton = (Button) findViewById(R.id.homeButton);
+        assert homeButton != null;
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DummyLocation.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
