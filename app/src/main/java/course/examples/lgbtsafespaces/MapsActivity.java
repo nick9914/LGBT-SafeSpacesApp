@@ -25,6 +25,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,6 +76,17 @@ public class MapsActivity extends AppCompatActivity
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         locationMap = new HashMap<>();
+
+        //TODO
+        //Temporary button to see if review location app working
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent foo = new Intent(MapsActivity.this, DummyLocation.class);
+                startActivity(foo);
+            }
+        });
     }
 
     @Override
@@ -242,7 +254,9 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //Location Name: marker.getTitle()
-        Intent intent = new Intent(MapsActivity.this, DummyLocation.class);
+        Log.d("CLAW", "Info window clicked");
+        String id = marker.getId();
+        Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
         startActivity(intent);
 
 
