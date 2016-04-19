@@ -16,17 +16,17 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="193dp"
         android:layout_height="wrap_content"
         android:weightSum="1"
         android:gravity="center_horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="151dp"
+            android:layout_height="wrap_content"
             android:id="@+id/locationImage"
-            android:layout_weight="0.63"
-            android:background="@drawable/view_border"/>
+            android:background="@drawable/view_border"
+            android:src="@drawable/placeholder" />
 
     </LinearLayout>
 
