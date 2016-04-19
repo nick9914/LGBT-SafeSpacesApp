@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -241,6 +242,9 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //Location Name: marker.getTitle()
+        Intent intent = new Intent(MapsActivity.this, DummyLocation.class);
+        startActivity(intent);
+
 
     }
 }

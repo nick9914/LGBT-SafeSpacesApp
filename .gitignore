@@ -5,3 +5,10 @@
 .DS_Store
 /build
 /captures
+.idea/.name
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+app/app.iml
+app/src/debug/res/values/google_maps_api.xml
