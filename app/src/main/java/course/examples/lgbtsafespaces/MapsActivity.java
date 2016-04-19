@@ -76,17 +76,6 @@ public class MapsActivity extends AppCompatActivity
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         locationMap = new HashMap<>();
-
-        //TODO
-        //Temporary button to see if review location app working
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent foo = new Intent(MapsActivity.this, DummyLocation.class);
-                startActivity(foo);
-            }
-        });
     }
 
     @Override
@@ -101,6 +90,10 @@ public class MapsActivity extends AppCompatActivity
         /*LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 14);
         mMap.animateCamera(cameraUpdate);*/
+
+        //TODO
+        mMap.setOnInfoWindowClickListener(this);
+
 
     }
 
