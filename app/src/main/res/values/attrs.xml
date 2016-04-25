@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--http://stackoverflow.com/questions/2604599/android-imagebutton-with-a-selected-state-->
+<resources>
+    <declare-styleable name="ToggleImageButton">
+        <attr name="android:checked" />
+    </declare-styleable>
+</resources>

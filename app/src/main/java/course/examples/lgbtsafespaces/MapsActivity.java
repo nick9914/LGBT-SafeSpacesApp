@@ -1,7 +1,5 @@
 package course.examples.lgbtsafespaces;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -25,6 +23,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -106,7 +105,7 @@ public class MapsActivity extends AppCompatActivity
         for(Location loc : listOfLocations) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(loc.getLat(), loc.getLng()))
             .title(loc.getLocationName())
-            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            .icon(BitmapDescriptorFactory.defaultMarker(150f)));
             locationMap.put(loc.getLocationName(), loc);
         }
     }
@@ -253,5 +252,21 @@ public class MapsActivity extends AppCompatActivity
         startActivity(intent);
 
 
+
+    }
+
+    public void mapButtonChecked(View view) {
+        boolean checked = ((ToggleImageButton)view).isChecked();
+        if(checked) {
+            findViewById(R.id.map_legend).setVisibility(View.VISIBLE);
+            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_pressed);
+            findViewById(R.id.map_legend).invalidate();
+            findViewById(R.id.info_button_linear_layout).invalidate();
+        } else {
+            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_normal);
+            findViewById(R.id.map_legend).setVisibility(View.GONE);
+            findViewById(R.id.map_legend).invalidate();
+            findViewById(R.id.info_button_linear_layout).invalidate();
+        }
     }
 }
