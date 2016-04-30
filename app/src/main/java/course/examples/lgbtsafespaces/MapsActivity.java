@@ -2,6 +2,7 @@ package course.examples.lgbtsafespaces;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -47,6 +48,7 @@ public class MapsActivity extends AppCompatActivity
         OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
+        GoogleMap.OnMapClickListener,
         GoogleMap.OnInfoWindowClickListener {
 
     /**
@@ -83,6 +85,7 @@ public class MapsActivity extends AppCompatActivity
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        mMap.setOnMapClickListener(this);
         enableMyLocation();
         setMarkers();
         //Move Camera to current Location
@@ -92,8 +95,6 @@ public class MapsActivity extends AppCompatActivity
 
         //TODO
         mMap.setOnInfoWindowClickListener(this);
-
-
     }
 
     private void setMarkers() {
@@ -131,6 +132,12 @@ public class MapsActivity extends AppCompatActivity
         // Return false so that we don't consume the event and the default behavior still occurs
         // (the camera animates to the user's current position).
         return false;
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        Log.d("CLAW", latLng.toString());
+        mMap.addMarker(new MarkerOptions().position(latLng));
     }
 
 
@@ -246,8 +253,6 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //Location Name: marker.getTitle()
-        Log.d("CLAW", "Info window clicked");
-        String id = marker.getId();
         Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
         startActivity(intent);
 
