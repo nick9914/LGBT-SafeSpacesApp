@@ -63,9 +63,8 @@ public class MapsActivity extends AppCompatActivity
      * {@link #onRequestPermissionsResult(int, String[], int[])}.
      */
     private boolean mPermissionDenied = false;
-
     private GoogleMap mMap;
-
+    private Marker userClick;
     private Map<String, Location> locationMap;
 
     @Override
@@ -136,8 +135,11 @@ public class MapsActivity extends AppCompatActivity
 
     @Override
     public void onMapClick(LatLng latLng) {
-        Log.d("CLAW", latLng.toString());
-        mMap.addMarker(new MarkerOptions().position(latLng));
+        if (userClick != null) {
+            userClick.setPosition(latLng);
+        } else {
+            userClick = mMap.addMarker(new MarkerOptions().position(latLng));
+        }
     }
 
 
