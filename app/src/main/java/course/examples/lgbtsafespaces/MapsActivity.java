@@ -65,6 +65,7 @@ public class MapsActivity extends AppCompatActivity
     private boolean mPermissionDenied = false;
     private GoogleMap mMap;
     private Marker userClick;
+    private String userClickId;
     private Map<String, Location> locationMap;
 
     @Override
@@ -138,8 +139,11 @@ public class MapsActivity extends AppCompatActivity
         if (userClick != null) {
             userClick.setPosition(latLng);
         } else {
-            userClick = mMap.addMarker(new MarkerOptions().position(latLng));
+            userClick = mMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title("Add Location"));
         }
+        userClickId = userClick.getId();
     }
 
 
@@ -179,7 +183,6 @@ public class MapsActivity extends AppCompatActivity
     }
 
     private String readJsonFile(InputStream inputStream) {
-// TODO Auto-generated method stub
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         byte bufferByte[] = new byte[1024];
@@ -191,14 +194,12 @@ public class MapsActivity extends AppCompatActivity
             outputStream.close();
             inputStream.close();
         } catch (IOException e) {
-            Log.d("READ JSON FILE", "couldn not read JSON File");
+            Log.d("READ JSON FILE", "could not read JSON File");
         }
         return outputStream.toString();
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
-
-
         private final View mContents;
 
         CustomInfoWindowAdapter() {
@@ -225,25 +226,37 @@ public class MapsActivity extends AppCompatActivity
                 titleText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, titleText.length(), 0);
                 titleUi.setText(titleText);
                 Location loc = locationMap.get(title);
-                if(!loc.genderNeutralBathroom) {
+
+                if (loc != null) {
+                    if (!loc.genderNeutralBathroom) {
+                        view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
+                    } else {
+                        view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
+                    }
+
+                    if (!loc.verifiedSafeSpace) {
+                        view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
+                    } else {
+                        view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
+                    }
+
+                    if (!loc.friendlyBusiness) {
+                        view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
+                    } else {
+                        view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
+                    }
+
+                    if (!loc.shelter) {
+                        view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
+                    } else {
+                        view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    //Turn off all icons
                     view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
-                }else {
-                    view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
-                }
-                if(!loc.verifiedSafeSpace) {
                     view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
-                } else {
-                    view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
-                }
-                if(!loc.friendlyBusiness) {
                     view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
-                } else {
-                    view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
-                }
-                if(!loc.shelter) {
                     view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
-                } else {
-                    view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
                 }
             } else {
                 titleUi.setText("");
@@ -253,13 +266,13 @@ public class MapsActivity extends AppCompatActivity
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        //Start new Activity
-        //Location Name: marker.getTitle()
-        Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
-        startActivity(intent);
-
-
-
+        if (marker.getId().equals(userClickId)) {
+            //TODO
+            //Load into the add location thing instead
+        } else {
+            Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
+            startActivity(intent);
+        }
     }
 
     public void mapButtonChecked(View view) {
