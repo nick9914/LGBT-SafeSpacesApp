@@ -143,6 +143,7 @@ public class MapsActivity extends AppCompatActivity
                     .position(latLng)
                     .title("Add Location"));
         }
+
         userClickId = userClick.getId();
     }
 
@@ -267,9 +268,19 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onInfoWindowClick(Marker marker) {
         if (marker.getId().equals(userClickId)) {
-            //TODO
-            //Load into the add location thing instead
+            //Pass the location of the user's marker to the AddLocation class while starting it
+            Bundle args = new Bundle();
+            args.putParcelable("latlng", marker.getPosition());
+
+            Intent intent = new Intent(getApplicationContext(), AddLocation.class);
+            intent.putExtra("bundle", args);
+
+            startActivity(intent);
         } else {
+            //TODO
+            //Pass the name of the location into the LocationInfo class so that the proper
+            //information can be displayed about the location
+
             Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
             startActivity(intent);
         }
