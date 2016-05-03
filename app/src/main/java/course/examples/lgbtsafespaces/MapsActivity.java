@@ -55,10 +55,8 @@ public class MapsActivity extends AppCompatActivity
         OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleMap.OnInfoWindowClickListener,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
-        GoogleMap.OnMapClickListener,
+        GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnInfoWindowClickListener {
 
     /**
@@ -82,7 +80,7 @@ public class MapsActivity extends AppCompatActivity
     private Location mLastLocation;
     private Marker userClick;
     private String userClickId;
-    private Map<String, Location> locationMap;
+    //private Map<String, Location> locationMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +111,6 @@ public class MapsActivity extends AppCompatActivity
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-        mMap.setOnMapClickListener(this);
         enableMyLocation();
         setMarkers();
         //Move Camera to current LGBTLocation
@@ -133,13 +130,14 @@ public class MapsActivity extends AppCompatActivity
     private void setMarkers() {
         InputStream inputStream = this.getResources().openRawResource(R.raw.locations);
         String jsonString = readJsonFile(inputStream);
-        Type collectionType = new TypeToken<List<LGBTLocation>>(){}.getType();
+        Type collectionType = new TypeToken<List<LGBTLocation>>() {
+        }.getType();
         Gson gson = new Gson();
         List<LGBTLocation> listOfLGBTLocations = gson.fromJson(jsonString, collectionType);
-        for(LGBTLocation loc : listOfLGBTLocations) {
+        for (LGBTLocation loc : listOfLGBTLocations) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(loc.getLat(), loc.getLng()))
-            .title(loc.getLocationName())
-            .icon(BitmapDescriptorFactory.defaultMarker(150f)));
+                    .title(loc.getLocationName())
+                    .icon(BitmapDescriptorFactory.defaultMarker(150f)));
             locationMap.put(loc.getLocationName(), loc);
         }
     }
@@ -166,20 +164,6 @@ public class MapsActivity extends AppCompatActivity
         // (the camera animates to the user's current position).
         return false;
     }
-
-    @Override
-    public void onMapClick(LatLng latLng) {
-        if (userClick != null) {
-            userClick.setPosition(latLng);
-        } else {
-            userClick = mMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .title("Add Location"));
-        }
-
-        userClickId = userClick.getId();
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -234,7 +218,6 @@ public class MapsActivity extends AppCompatActivity
     }
 
 
-
     @Override
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
@@ -245,12 +228,11 @@ public class MapsActivity extends AppCompatActivity
         startActivity(intent);
 
 
-
     }
 
     public void mapButtonChecked(View view) {
-        boolean checked = ((ToggleImageButton)view).isChecked();
-        if(checked) {
+        boolean checked = ((ToggleImageButton) view).isChecked();
+        if (checked) {
             findViewById(R.id.map_legend).setVisibility(View.VISIBLE);
             findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_pressed);
             findViewById(R.id.map_legend).invalidate();
@@ -279,7 +261,7 @@ public class MapsActivity extends AppCompatActivity
     public void onConnected(Bundle connectionHint) {
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
-        if(mLastLocation != null){
+        if (mLastLocation != null) {
             LatLng currentLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 16));
         }
@@ -330,97 +312,74 @@ public class MapsActivity extends AppCompatActivity
                 titleText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, titleText.length(), 0);
                 titleUi.setText(titleText);
                 LGBTLocation loc = locationMap.get(title);
-                if(!loc.genderNeutralBathroom) {
+                if (!loc.genderNeutralBathroom) {
                     view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
-                }else {
+                } else {
                     view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
                 }
-                if(!loc.verifiedSafeSpace) {
+                if (!loc.verifiedSafeSpace) {
                     view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
                 } else {
                     view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
                 }
-                if(!loc.friendlyBusiness) {
+                if (!loc.friendlyBusiness) {
                     view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
                 } else {
                     view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
                 }
-                if(!loc.shelter) {
+                if (!loc.shelter) {
                     view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
                 } else {
                     view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
-                Location loc = locationMap.get(title);
 
-                if (loc != null) {
-                    if (!loc.genderNeutralBathroom) {
+                    if (loc != null) {
+                        if (!loc.genderNeutralBathroom) {
+                            view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
+                        } else {
+                            view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
+                        }
+
+                        if (!loc.verifiedSafeSpace) {
+                            view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
+                        } else {
+                            view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
+                        }
+
+                        if (!loc.friendlyBusiness) {
+                            view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
+                        } else {
+                            view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
+                        }
+
+                        if (!loc.shelter) {
+                            view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
+                        } else {
+                            view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
+                        }
+                    } else {
+                        //Turn off all icons
                         view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
-                    } else {
-                        view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
-                    }
-
-                    if (!loc.verifiedSafeSpace) {
                         view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
-                    } else {
-                        view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
-                    }
-
-                    if (!loc.friendlyBusiness) {
                         view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
-                    } else {
-                        view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
-                    }
-
-                    if (!loc.shelter) {
                         view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
-                    } else {
-                        view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
                     }
-                } else {
-                    //Turn off all icons
-                    view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
-                    view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
-                    view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
-                    view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
                 }
-            } else {
-                titleUi.setText("");
             }
         }
-    }
 
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        if (marker.getId().equals(userClickId)) {
-            //Pass the location of the user's marker to the AddLocation class while starting it
-            Bundle args = new Bundle();
-            args.putParcelable("latlng", marker.getPosition());
-
-            Intent intent = new Intent(getApplicationContext(), AddLocation.class);
-            intent.putExtra("bundle", args);
-
-            startActivity(intent);
-        } else {
-            //TODO
-            //Pass the name of the location into the LocationInfo class so that the proper
-            //information can be displayed about the location
-
-            Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
-            startActivity(intent);
-        }
-    }
-
-    public void mapButtonChecked(View view) {
-        boolean checked = ((ToggleImageButton)view).isChecked();
-        if(checked) {
-            findViewById(R.id.map_legend).setVisibility(View.VISIBLE);
-            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_pressed);
-            findViewById(R.id.map_legend).invalidate();
-            findViewById(R.id.info_button_linear_layout).invalidate();
-        } else {
-            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_normal);
-            findViewById(R.id.map_legend).setVisibility(View.GONE);
-            findViewById(R.id.map_legend).invalidate();
-            findViewById(R.id.info_button_linear_layout).invalidate();
+        public void mapButtonChecked(View view) {
+            boolean checked = ((ToggleImageButton) view).isChecked();
+            if (checked) {
+                findViewById(R.id.map_legend).setVisibility(View.VISIBLE);
+                findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_pressed);
+                findViewById(R.id.map_legend).invalidate();
+                findViewById(R.id.info_button_linear_layout).invalidate();
+            } else {
+                findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_normal);
+                findViewById(R.id.map_legend).setVisibility(View.GONE);
+                findViewById(R.id.map_legend).invalidate();
+                findViewById(R.id.info_button_linear_layout).invalidate();
+            }
         }
     }
 }
