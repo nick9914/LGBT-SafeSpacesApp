@@ -3,7 +3,7 @@ package course.examples.lgbtsafespaces;
 /**
  * Created by Nicolas on 4/17/2016.
  */
-public class Location {
+public class LGBTLocation {
     String locationName;
     double lng;
     double lat;
@@ -13,7 +13,7 @@ public class Location {
     boolean shelter;
     boolean friendlyBusiness;
 
-    public Location(String locationName, double lng, double lat) {
+    public LGBTLocation(String locationName, double lng, double lat) {
         this.locationName = locationName;
         this.lng = lng;
         this.lat = lat;

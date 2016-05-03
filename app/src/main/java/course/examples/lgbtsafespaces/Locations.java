@@ -7,9 +7,9 @@ import java.util.List;
  * Created by Nicolas on 4/17/2016.
  */
 public class Locations {
-    List<Location> listOfLocations;
+    List<LGBTLocation> listOfLGBTLocations;
 
     public Locations() {
-        this.listOfLocations = new ArrayList<>();
+        this.listOfLGBTLocations = new ArrayList<>();
     }
 }

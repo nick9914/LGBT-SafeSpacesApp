@@ -1,5 +1,9 @@
 package course.examples.lgbtsafespaces;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
@@ -12,21 +16,24 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
@@ -38,8 +45,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This demo shows how GMS Location can be used to check for changes to the users location.  The
- * "My Location" button uses GMS Location to set the blue dot representing the users location.
+ * This demo shows how GMS LGBTLocation can be used to check for changes to the users location.  The
+ * "My LGBTLocation" button uses GMS LGBTLocation to set the blue dot representing the users location.
  * Permission for {@link android.Manifest.permission#ACCESS_FINE_LOCATION} is requested at run
  * time. If the permission has not been granted, the Activity is finished with an error message.
  */
@@ -48,6 +55,9 @@ public class MapsActivity extends AppCompatActivity
         OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
+        GoogleMap.OnInfoWindowClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
         GoogleMap.OnMapClickListener,
         GoogleMap.OnInfoWindowClickListener {
 
@@ -64,6 +74,12 @@ public class MapsActivity extends AppCompatActivity
      */
     private boolean mPermissionDenied = false;
     private GoogleMap mMap;
+
+    private Map<String, LGBTLocation> locationMap;
+
+    private GoogleApiClient mGoogleApiClient;
+
+    private Location mLastLocation;
     private Marker userClick;
     private String userClickId;
     private Map<String, Location> locationMap;
@@ -76,7 +92,19 @@ public class MapsActivity extends AppCompatActivity
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        /*TODO: Implement Toolbar*/
+        /*Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);*/
         locationMap = new HashMap<>();
+
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
     }
 
     @Override
@@ -88,22 +116,27 @@ public class MapsActivity extends AppCompatActivity
         mMap.setOnMapClickListener(this);
         enableMyLocation();
         setMarkers();
-        //Move Camera to current Location
+        //Move Camera to current LGBTLocation
         /*LatLng latLng = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 14);
         mMap.animateCamera(cameraUpdate);*/
 
-        //TODO
         mMap.setOnInfoWindowClickListener(this);
+        /*TODO: Implement Toolbar*/
+        /*Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Log.d("DEBUG", "toolbar height:" + myToolbar.getHeight());
+        mMap.setPadding(0, myToolbar.getHeight(), 0, 0 );*/
+
+
     }
 
     private void setMarkers() {
         InputStream inputStream = this.getResources().openRawResource(R.raw.locations);
         String jsonString = readJsonFile(inputStream);
-        Type collectionType = new TypeToken<List<Location>>(){}.getType();
+        Type collectionType = new TypeToken<List<LGBTLocation>>(){}.getType();
         Gson gson = new Gson();
-        List<Location> listOfLocations = gson.fromJson(jsonString, collectionType);
-        for(Location loc : listOfLocations) {
+        List<LGBTLocation> listOfLGBTLocations = gson.fromJson(jsonString, collectionType);
+        for(LGBTLocation loc : listOfLGBTLocations) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(loc.getLat(), loc.getLng()))
             .title(loc.getLocationName())
             .icon(BitmapDescriptorFactory.defaultMarker(150f)));
@@ -112,7 +145,7 @@ public class MapsActivity extends AppCompatActivity
     }
 
     /**
-     * Enables the My Location layer if the fine location permission has been granted.
+     * Enables the My LGBTLocation layer if the fine location permission has been granted.
      */
     private void enableMyLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -200,6 +233,76 @@ public class MapsActivity extends AppCompatActivity
         return outputStream.toString();
     }
 
+
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        //Start new Activity
+        //LGBTLocation Name: marker.getTitle()
+        Log.d("CLAW", "Info window clicked");
+        String id = marker.getId();
+        Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
+        startActivity(intent);
+
+
+
+    }
+
+    public void mapButtonChecked(View view) {
+        boolean checked = ((ToggleImageButton)view).isChecked();
+        if(checked) {
+            findViewById(R.id.map_legend).setVisibility(View.VISIBLE);
+            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_pressed);
+            findViewById(R.id.map_legend).invalidate();
+            findViewById(R.id.info_button_linear_layout).invalidate();
+        } else {
+            findViewById(R.id.info_button_linear_layout).setBackgroundResource(R.drawable.mapbutton_normal);
+            findViewById(R.id.map_legend).setVisibility(View.GONE);
+            findViewById(R.id.map_legend).invalidate();
+            findViewById(R.id.info_button_linear_layout).invalidate();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if(mLastLocation != null){
+            LatLng currentLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 16));
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    private int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
+    }
+
+    /*Custom Info Window Class*/
+
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         private final View mContents;
 
@@ -226,6 +329,26 @@ public class MapsActivity extends AppCompatActivity
                 SpannableString titleText = new SpannableString(title);
                 titleText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, titleText.length(), 0);
                 titleUi.setText(titleText);
+                LGBTLocation loc = locationMap.get(title);
+                if(!loc.genderNeutralBathroom) {
+                    view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.GONE);
+                }else {
+                    view.findViewById(R.id.gender_neutral_bathroom_icon).setVisibility(View.VISIBLE);
+                }
+                if(!loc.verifiedSafeSpace) {
+                    view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.GONE);
+                } else {
+                    view.findViewById(R.id.verified_safe_space_icon).setVisibility(View.VISIBLE);
+                }
+                if(!loc.friendlyBusiness) {
+                    view.findViewById(R.id.friendly_business_icon).setVisibility(View.GONE);
+                } else {
+                    view.findViewById(R.id.friendly_business_icon).setVisibility(View.VISIBLE);
+                }
+                if(!loc.shelter) {
+                    view.findViewById(R.id.shelter_icon).setVisibility(View.GONE);
+                } else {
+                    view.findViewById(R.id.shelter_icon).setVisibility(View.VISIBLE);
                 Location loc = locationMap.get(title);
 
                 if (loc != null) {

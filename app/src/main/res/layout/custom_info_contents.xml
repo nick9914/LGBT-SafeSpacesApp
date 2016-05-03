@@ -2,47 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:layout_gravity="center_horizontal"
-        android:textSize="14dp"
-        android:textStyle="bold"/>
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
 
-        <ImageView
-            android:id="@+id/verified_safe_space_icon"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_beenhere" />
+            android:id="@+id/title"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="TITLE"
+            android:paddingTop="10dp" />
 
-        <ImageView
-            android:id="@+id/gender_neutral_bathroom_icon"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_wc" />
+            android:text="1714 14th Street Northwest"
+            android:textColor="#666666"
+            android:paddingTop="5dp" />
 
-        <ImageView
-            android:id="@+id/friendly_business_icon"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_store_mall_directory" />
+            android:orientation="horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp">
 
-        <ImageView
-            android:id="@+id/shelter_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_local_hotel" />
+            <ImageView
+                android:id="@+id/verified_safe_space_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_beenhere_gray_18dp" />
+
+            <ImageView
+                android:id="@+id/gender_neutral_bathroom_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wc_gray_18dp" />
+
+            <ImageView
+                android:id="@+id/friendly_business_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_store_mall_directory_gray_18dp" />
+
+            <ImageView
+                android:id="@+id/shelter_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_hotel_gray_18dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_forward_secondary_color_24dp"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="35dp"
+        android:paddingRight="10dp" />
+
+
 
 
 </LinearLayout>
