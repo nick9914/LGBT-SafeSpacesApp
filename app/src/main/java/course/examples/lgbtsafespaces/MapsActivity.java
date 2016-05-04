@@ -115,6 +115,15 @@ public class MapsActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        final Button addLocationButton = (Button) findViewById(R.id.addLocationButton);
+        addLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, AddLocation.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

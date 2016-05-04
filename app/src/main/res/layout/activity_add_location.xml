@@ -30,6 +30,38 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/longValue" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/streetText"
+        android:hint="Street Address"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityText"
+        android:hint="City"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stateText"
+        android:hint="State"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zipCodeText"
+        android:hint="Zip Code"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -74,6 +106,13 @@
             android:layout_height="wrap_content"
             android:text="New CheckBox"
             android:id="@+id/checkBox6" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:id="@+id/doneButton"
+            android:textColor="#000000"/>
     </LinearLayout>
 
 </LinearLayout>

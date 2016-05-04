@@ -16,14 +16,5 @@ public class EmergencyInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emergency_information);
 
-        Button button = (Button) findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EmergencyInformation.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }
