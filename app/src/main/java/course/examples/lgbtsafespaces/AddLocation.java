@@ -10,16 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -27,10 +25,15 @@ import java.util.List;
 
 /**
  * Created by claw on 4/30/16.
+ *
+ * Address to Latitude / Longitude function taken/adapted from:
+ * http://stackoverflow.com/questions/22909756/how-to-get-latitude-and-longitude-from-a-given-address-in-android-google-map-v2
  */
 public class AddLocation extends AppCompatActivity {
     private Double lat = 0.0;
     private Double lng = 0.0;
+    TextView latValue;
+    TextView longValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +42,8 @@ public class AddLocation extends AppCompatActivity {
 
         //Get the lattitue and longitude from the previous activity
 
-        final TextView latValue = (TextView) findViewById(R.id.latValue);
-        final TextView longValue = (TextView) findViewById(R.id.longValue);
+        TextView latValue = (TextView) findViewById(R.id.latValue);
+        TextView longValue = (TextView) findViewById(R.id.longValue);
         final TextView streetText = (TextView) findViewById(R.id.streetText);
         final TextView stateText = (TextView) findViewById(R.id.stateText);
         final TextView cityText = (TextView) findViewById(R.id.cityText);
@@ -66,17 +69,14 @@ public class AddLocation extends AppCompatActivity {
         });
     }
 
-    //TODO
     public void getLatLongFromPlace(String place) {
         try {
             Geocoder selected_place_geocoder = new Geocoder(AddLocation.this);
             List<Address> address;
             address = selected_place_geocoder.getFromLocationName(place, 5);
 
-            Log.d("CLAW", place);
-
             if (address == null) {
-                //TODO
+                Toast.makeText(AddLocation.this, "That Location is invalid!", Toast.LENGTH_LONG).show();
             } else {
                 Address location = address.get(0);
                 Double lat= location.getLatitude();
@@ -84,20 +84,19 @@ public class AddLocation extends AppCompatActivity {
 
                 Log.d("CLAW", lat.toString());
                 Log.d("CLAW", lng.toString());
-
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             fetchLatLongFromService fetch_latlng_from_service_abc = new fetchLatLongFromService(
                     place.replaceAll("\\s+", ""));
             fetch_latlng_from_service_abc.execute();
 
+            //Warn user
+            Toast.makeText(AddLocation.this, "That location is invalid!", Toast.LENGTH_LONG).show();
         }
-
     }
 
-//Sometimes happens that device gives location = null
+    //Sometimes happens that device gives location = null
     public class fetchLatLongFromService extends
             AsyncTask<Void, Void, StringBuilder> {
         String place;
