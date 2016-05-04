@@ -34,6 +34,8 @@ import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
@@ -103,6 +105,16 @@ public class MapsActivity extends AppCompatActivity
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        //Start the emergency information button
+        final ImageButton emergencyButton = (ImageButton) findViewById(R.id.emergencyButton);
+        emergencyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, EmergencyInformation.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
