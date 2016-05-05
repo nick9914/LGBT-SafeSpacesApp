@@ -24,9 +24,7 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Created by claw on 4/30/16.
- *
- * Address to Latitude / Longitude function taken/adapted from:
+ * Street Address to Latitude / Longitude function taken/adapted from:
  * http://stackoverflow.com/questions/22909756/how-to-get-latitude-and-longitude-from-a-given-address-in-android-google-map-v2
  */
 public class AddLocation extends AppCompatActivity {
@@ -50,10 +48,6 @@ public class AddLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
-        //Get the lattitue and longitude from the previous activity
-
-        TextView latValue = (TextView) findViewById(R.id.latValue);
-        TextView longValue = (TextView) findViewById(R.id.longValue);
         final TextView streetText = (TextView) findViewById(R.id.streetText);
         final TextView stateText = (TextView) findViewById(R.id.stateText);
         final TextView cityText = (TextView) findViewById(R.id.cityText);
@@ -131,6 +125,13 @@ public class AddLocation extends AppCompatActivity {
                 writeLocationToJSON(latlng, locationNameText.getText().toString(),
                     isCrisisCenter, isGenderNeutralBathroom,
                         isShelter, isSafeSpace, isFriendlyBusiness);
+
+                Toast.makeText(AddLocation.this, "Thank you for adding a location!", Toast.LENGTH_LONG).show();
+
+                //TODO
+                //Check to make sure the location was valid first
+                //Check to make sure the write to json was successful
+                finish();
             }
         });
     }
@@ -176,16 +177,15 @@ public class AddLocation extends AppCompatActivity {
         //things to write the location name and checkbox statuses to the json
     }
 
-    //Sometimes happens that device gives location = null
-    public class fetchLatLongFromService extends
-            AsyncTask<Void, Void, StringBuilder> {
+    /**
+     * Functions to translate a street address to latitude and longitude coordinates
+     */
+    public class fetchLatLongFromService extends AsyncTask<Void, Void, StringBuilder> {
         String place;
-
 
         public fetchLatLongFromService(String place) {
             super();
             this.place = place;
-
         }
 
         @Override
@@ -218,8 +218,8 @@ public class AddLocation extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return null;
 
+            return null;
         }
 
         @Override
@@ -230,28 +230,15 @@ public class AddLocation extends AppCompatActivity {
                 JSONObject jsonObj = new JSONObject(result.toString());
                 JSONArray resultJsonArray = jsonObj.getJSONArray("results");
 
-                // Extract the Place descriptions from the results
-                // resultList = new ArrayList<String>(resultJsonArray.length());
-
-                JSONObject before_geometry_jsonObj = resultJsonArray
-                        .getJSONObject(0);
-
-                JSONObject geometry_jsonObj = before_geometry_jsonObj
-                        .getJSONObject("geometry");
-
-                JSONObject location_jsonObj = geometry_jsonObj
-                        .getJSONObject("location");
+                JSONObject before_geometry_jsonObj = resultJsonArray.getJSONObject(0);
+                JSONObject geometry_jsonObj = before_geometry_jsonObj.getJSONObject("geometry");
+                JSONObject location_jsonObj = geometry_jsonObj.getJSONObject("location");
 
                 String lat_helper = location_jsonObj.getString("lat");
                 double lat = Double.valueOf(lat_helper);
 
-
                 String lng_helper = location_jsonObj.getString("lng");
                 double lng = Double.valueOf(lng_helper);
-
-
-                LatLng point = new LatLng(lat, lng);
-
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block

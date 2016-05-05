@@ -6,7 +6,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -16,19 +15,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
@@ -74,15 +69,9 @@ public class MapsActivity extends AppCompatActivity
      */
     private boolean mPermissionDenied = false;
     private GoogleMap mMap;
-
     private Map<String, LGBTLocation> locationMap;
-
     private GoogleApiClient mGoogleApiClient;
-
     private Location mLastLocation;
-    private Marker userClick;
-    private String userClickId;
-    //private Map<String, Location> locationMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +105,8 @@ public class MapsActivity extends AppCompatActivity
             }
         });
 
+        //TODO
+        //This is temporary button
         final Button addLocationButton = (Button) findViewById(R.id.addLocationButton);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,8 +234,6 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //LGBTLocation Name: marker.getTitle()
-        Log.d("CLAW", "Info window clicked");
-        String id = marker.getId();
         Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
         startActivity(intent);
 
@@ -290,12 +279,12 @@ public class MapsActivity extends AppCompatActivity
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        //TODO stub
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        //TODO stub
     }
 
     private int dpToPx(int dp) {
