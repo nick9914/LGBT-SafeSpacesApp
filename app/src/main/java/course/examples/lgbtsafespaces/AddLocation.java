@@ -32,8 +32,18 @@ import java.util.List;
 public class AddLocation extends AppCompatActivity {
     private Double lat = 0.0;
     private Double lng = 0.0;
+    private LatLng latlng;
     TextView latValue;
     TextView longValue;
+    /*
+    //TODO
+    CLAW: I know this is a terrible way to do this
+     */
+    private boolean isSafeSpace;
+    private boolean isGenderNeutralBathroom;
+    private boolean isShelter;
+    private boolean isCrisisCenter;
+    private boolean isFriendlyBusiness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,28 +58,86 @@ public class AddLocation extends AppCompatActivity {
         final TextView stateText = (TextView) findViewById(R.id.stateText);
         final TextView cityText = (TextView) findViewById(R.id.cityText);
         final TextView zipCodeText = (TextView) findViewById(R.id.zipCodeText);
+        final TextView locationNameText = (TextView) findViewById(R.id.locationNameText);
 
         final CheckBox safeSpaceCheck = (CheckBox) findViewById(R.id.safeSpaceCheck);
-        if (safeSpaceCheck.isChecked()) {
-            //TODO
-            //write to the json file that this option is checked for this location
-        }
-        ;
+        safeSpaceCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (safeSpaceCheck.isChecked()) {
+                    isSafeSpace = true;
+                } else {
+                    isSafeSpace = false;
+                }
+            }
+        });
 
-        //TODO
-        //find way to loop through all the checkboxes on the screen?
+        final CheckBox genderNeutralBathroomCheck = (CheckBox) findViewById(R.id.genNeutBathCheck);
+        safeSpaceCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (genderNeutralBathroomCheck.isChecked()) {
+                    isGenderNeutralBathroom = true;
+                } else {
+                    isGenderNeutralBathroom = false;
+                }
+            }
+        });
+
+        final CheckBox shelterCheck = (CheckBox) findViewById(R.id.shelterCheck);
+        safeSpaceCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shelterCheck.isChecked()) {
+                    isShelter = true;
+                } else {
+                    isShelter = false;
+                }
+            }
+        });
+
+        final CheckBox crisisCenteCheck = (CheckBox) findViewById(R.id.crisisCenterCheck);
+        safeSpaceCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (crisisCenteCheck.isChecked()) {
+                    isCrisisCenter = true;
+                } else {
+                    isCrisisCenter = false;
+                }
+            }
+        });
+
+        final CheckBox friendlyBusinessCheck = (CheckBox) findViewById(R.id.friendlyBusinessCheck);
+        safeSpaceCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (friendlyBusinessCheck.isChecked()) {
+                    isFriendlyBusiness = true;
+                } else {
+                    isFriendlyBusiness = false;
+                }
+            }
+        });
 
         Button doneButton = (Button) findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getLatLongFromPlace(streetText.getText() + ", " + cityText.getText()
+                latlng = getLatLongFromPlace(streetText.getText() + ", " + cityText.getText()
                     + ", " + stateText.getText() + ", " + zipCodeText.getText() );
+
+                //write to the underlying JSON
+                writeLocationToJSON(latlng, locationNameText.getText().toString(),
+                    isCrisisCenter, isGenderNeutralBathroom,
+                        isShelter, isSafeSpace, isFriendlyBusiness);
             }
         });
     }
 
-    public void getLatLongFromPlace(String place) {
+    public LatLng getLatLongFromPlace(String place) {
+        LatLng latlng = new LatLng(0.0, 0.0);
+
         try {
             Geocoder selected_place_geocoder = new Geocoder(AddLocation.this);
             List<Address> address;
@@ -84,6 +152,8 @@ public class AddLocation extends AppCompatActivity {
 
                 Log.d("CLAW", lat.toString());
                 Log.d("CLAW", lng.toString());
+
+                return new LatLng(lat, lng);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,6 +164,16 @@ public class AddLocation extends AppCompatActivity {
             //Warn user
             Toast.makeText(AddLocation.this, "That location is invalid!", Toast.LENGTH_LONG).show();
         }
+
+        return latlng;
+    }
+
+    public void writeLocationToJSON(LatLng latlng, String locationName, boolean isFriendlyBusiness,
+                                    boolean isCrisisCenter, boolean isGenderNeutralBathroom,
+                                    boolean isSafeSpace, boolean isShelter) {
+
+        //TODO
+        //things to write the location name and checkbox statuses to the json
     }
 
     //Sometimes happens that device gives location = null
