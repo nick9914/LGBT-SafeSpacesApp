@@ -21,7 +21,12 @@ import org.json.JSONObject;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Street Address to Latitude / Longitude function taken/adapted from:
@@ -38,12 +43,12 @@ public class AddLocation extends AppCompatActivity {
     CLAW: I know this is a terrible way to do this
      Final version should have something better in place
      */
-    private boolean isSafeSpace;
-    private boolean isGenderNeutralBathroom;
-    private boolean isShelter;
-    private boolean isCrisisCenter;
-    private boolean isFriendlyBusiness;
-    private boolean isValidLocation;
+    private Boolean isSafeSpace = false;
+    private Boolean isGenderNeutralBathroom = false;
+    private Boolean isShelter = false;
+    private Boolean isCrisisCenter = false;
+    private Boolean isFriendlyBusiness = false;
+    private Boolean isValidLocation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,12 +188,21 @@ public class AddLocation extends AppCompatActivity {
         return latlng;
     }
 
-    public void writeLocationToJSON(LatLng latlng, String locationName, boolean isFriendlyBusiness,
-                                    boolean isCrisisCenter, boolean isGenderNeutralBathroom,
-                                    boolean isSafeSpace, boolean isShelter) {
+    public void writeLocationToJSON(LatLng latlng, String locationName, Boolean isFriendlyBusiness,
+                                    Boolean isCrisisCenter, Boolean isGenderNeutralBathroom,
+                                    Boolean isSafeSpace, Boolean isShelter) {
 
-        //TODO
-        //things to write the location name and checkbox statuses to the json
+        HashMap<String, String> valuesToAdd = new HashMap<>();
+        valuesToAdd.put("latitude", ((Double) latlng.latitude).toString());
+        valuesToAdd.put("longitude", ((Double) latlng.longitude).toString());
+        valuesToAdd.put("locationName", locationName);
+        valuesToAdd.put("friendlyBusiness", isFriendlyBusiness.toString());
+        valuesToAdd.put("crisisCenter", isCrisisCenter.toString());
+        valuesToAdd.put("genderNeutralBahtroom", isGenderNeutralBathroom.toString());
+        valuesToAdd.put("safeSpace", isSafeSpace.toString());
+        valuesToAdd.put("shelter", isShelter.toString());
+
+        writeJson(valuesToAdd);
     }
 
     /**
@@ -259,6 +273,27 @@ public class AddLocation extends AppCompatActivity {
                 e.printStackTrace();
 
             }
+        }
+    }
+
+    /**
+     * Functions to write JSON to file
+     */
+
+    public void writeJson(HashMap<String, String> args) {
+        JsonWriter writer;
+        try {
+            writer = new JsonWriter(new FileWriter("temp.json"));
+
+            writer.beginObject(); // {
+            writer.name("locationName").value(args.get("locationName"));
+            writer.endObject(); // }
+            writer.close();
+
+            System.out.println("Done");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -98,5 +98,15 @@
     "crisisCenter": false,
     "shelter": false,
     "friendlyBusiness":true
+  },
+  {
+    "locationName": "AV Williams Building",
+    "lat": 39.0026879,
+    "lng": -76.9354979,
+    "verifiedSafeSpace": true,
+    "genderNeutralBathroom": false,
+    "crisisCenter": false,
+    "shelter": true,
+    "friendlyBusiness":false
   }
 ]
