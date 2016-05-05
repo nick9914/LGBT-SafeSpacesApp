@@ -33,15 +33,17 @@ public class AddLocation extends AppCompatActivity {
     private LatLng latlng;
     TextView latValue;
     TextView longValue;
-    /*
+    /**
     //TODO
     CLAW: I know this is a terrible way to do this
+     Final version should have something better in place
      */
     private boolean isSafeSpace;
     private boolean isGenderNeutralBathroom;
     private boolean isShelter;
     private boolean isCrisisCenter;
     private boolean isFriendlyBusiness;
+    private boolean isValidLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +116,8 @@ public class AddLocation extends AppCompatActivity {
             }
         });
 
-        Button doneButton = (Button) findViewById(R.id.doneButton);
-        doneButton.setOnClickListener(new View.OnClickListener() {
+        Button addLocationButton = (Button) findViewById(R.id.addLocationButton);
+        addLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 latlng = getLatLongFromPlace(streetText.getText() + ", " + cityText.getText()
@@ -126,11 +128,23 @@ public class AddLocation extends AppCompatActivity {
                     isCrisisCenter, isGenderNeutralBathroom,
                         isShelter, isSafeSpace, isFriendlyBusiness);
 
-                Toast.makeText(AddLocation.this, "Thank you for adding a location!", Toast.LENGTH_LONG).show();
 
                 //TODO
-                //Check to make sure the location was valid first
                 //Check to make sure the write to json was successful
+
+                if (isValidLocation) {
+                    Toast.makeText(AddLocation.this, "Thank you for adding a location!", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(AddLocation.this, "Please enter a valid location first!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
@@ -145,7 +159,7 @@ public class AddLocation extends AppCompatActivity {
             address = selected_place_geocoder.getFromLocationName(place, 5);
 
             if (address == null) {
-                Toast.makeText(AddLocation.this, "That Location is invalid!", Toast.LENGTH_LONG).show();
+                isValidLocation = false;
             } else {
                 Address location = address.get(0);
                 Double lat= location.getLatitude();
@@ -154,6 +168,7 @@ public class AddLocation extends AppCompatActivity {
                 Log.d("CLAW", lat.toString());
                 Log.d("CLAW", lng.toString());
 
+                isValidLocation = true;
                 return new LatLng(lat, lng);
             }
         } catch (Exception e) {
@@ -162,8 +177,7 @@ public class AddLocation extends AppCompatActivity {
                     place.replaceAll("\\s+", ""));
             fetch_latlng_from_service_abc.execute();
 
-            //Warn user
-            Toast.makeText(AddLocation.this, "That location is invalid!", Toast.LENGTH_LONG).show();
+            isValidLocation = false;
         }
 
         return latlng;
