@@ -105,7 +105,7 @@ public class MapsActivity extends AppCompatActivity
             }
         });
 
-        //TODO
+        /*//TODO
         //This is temporary button
         final Button addLocationButton = (Button) findViewById(R.id.addLocationButton);
         addLocationButton.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +114,7 @@ public class MapsActivity extends AppCompatActivity
                 Intent intent = new Intent(MapsActivity.this, AddLocation.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override

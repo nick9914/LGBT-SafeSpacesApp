@@ -31,14 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-       <!-- <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#10000000"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+        <!-- <android.support.v7.widget.Toolbar
+             android:id="@+id/my_toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="#10000000"
+             android:elevation="4dp"
+             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
 
         <LinearLayout
             android:id="@+id/info_button_linear_layout"
@@ -62,13 +62,32 @@
                 android:paddingRight="2dp"
                 android:paddingTop="1.5dp"
                 android:src="@drawable/ic_help_black_38dp" />
+        </LinearLayout>
 
-            <ImageButton
+        <LinearLayout
+            android:id="@+id/safety_button_linear_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/mapbutton_normal"
+            android:gravity="center_vertical|center|center_horizontal"
+            android:orientation="vertical">
+
+            <course.examples.lgbtsafespaces.ToggleImageButton
+                android:id="@+id/emergencyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/emergencyButton"
-                android:src="@drawable/ic_help_black_24dp" />
-
+                android:background="@android:color/transparent"
+                android:checked="false"
+                android:onClick="mapButtonChecked"
+                android:paddingBottom="2.5dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="1.5dp"
+                android:src="@drawable/ic_report_problem" />
         </LinearLayout>
 
 
@@ -163,16 +182,9 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TEMP BUTTON"
-            android:id="@+id/addLocationButton"
-            android:layout_below="@+id/info_button_linear_layout"
-            android:layout_alignEnd="@+id/info_button_linear_layout" />
 
     </RelativeLayout>
+
     <!-- The navigation drawer -->
     <LinearLayout
         android:layout_width="240dp"
@@ -181,9 +193,9 @@
         android:background="#D0FFFFFF"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clickable="true">
 
-        <!--Filters-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -340,27 +352,33 @@
             android:background="@android:color/darker_gray"
             android:paddingTop="20dp" />
 
+        <!--Add location button-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:clickable="true">
+
 
             <ImageView
+                android:id="@+id/add_location_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="20dp"
-                android:src="@drawable/ic_add_circle_gray_36dp" />
+                android:src="@drawable/ic_add_circle_gray_36dp"
+                android:onClick="addLocationButtonClick"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Add a Location" />
+                android:text="Add Location" />
 
         </LinearLayout>
 
+        <!--Listview button-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -382,18 +400,7 @@
                 android:text="List View" />
 
         </LinearLayout>
-
-
     </LinearLayout>
-
-    <!--    <ListView android:id="@+id/left_drawer"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:choiceMode="singleChoice"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:background="#111"/>-->
 
 </android.support.v4.widget.DrawerLayout>
 
