@@ -25,5 +25,6 @@ Prototype 1.
   </tr>
    <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061160/00bddfe4-1300-11e6-875f-dd0ad0933921.png" height="35%"></td>
+    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061475/14bc1296-1304-11e6-880e-eb269e15c8da.png" height="35%"></td>
   </tr>
 </table>
