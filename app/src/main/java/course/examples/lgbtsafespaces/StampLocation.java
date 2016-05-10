@@ -11,19 +11,19 @@ import android.widget.Button;
  *
  * This is a temporary placeholder class used only in prototyping v1.
  */
-public class DummyLocation extends AppCompatActivity {
+public class StampLocation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dummy_location);
+        setContentView(R.layout.stamp_location);
 
         final Button reviewButton = (Button) findViewById(R.id.reviewButton);
         assert reviewButton != null;
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DummyLocation.this, ReviewLocation.class);
+                Intent intent = new Intent(StampLocation.this, ReviewLocation.class);
                 startActivity(intent);
             }
         });
@@ -34,7 +34,7 @@ public class DummyLocation extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DummyLocation.this, MapsActivity.class);
+                Intent intent = new Intent(StampLocation.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

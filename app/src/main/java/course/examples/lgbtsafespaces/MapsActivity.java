@@ -29,7 +29,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -234,7 +233,7 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //LGBTLocation Name: marker.getTitle()
-        Intent intent = new Intent(getApplicationContext(), DummyLocation.class);
+        Intent intent = new Intent(getApplicationContext(), StampLocation.class);
         startActivity(intent);
 
 
