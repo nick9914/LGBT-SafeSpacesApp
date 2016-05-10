@@ -103,16 +103,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical" >
 
-        <TextView
+        <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reviews go here"
-            android:id="@+id/textView11" />
+            android:id="@+id/listView2" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>
