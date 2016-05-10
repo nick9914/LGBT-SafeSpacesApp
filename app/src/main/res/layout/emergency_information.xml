@@ -1,12 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:textColor="#000000"
-        android:text="This will contain information about local crisis centers and places to get help at a moment&apos;s notice" />
+        android:text="Safety Information"
+        android:layout_weight="0.05" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2"
+            android:textColor="#000000"
+            android:text="GLBT National Help Center"
+            android:layout_weight="0.05" />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_weight="0.05"
+        android:textColor="#000000"
+        android:text="1-888-843-4564" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:textColor="#000000"
+        android:text="Make sure you are safe!"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="If you are in physical danger, call the Police. If you experience violence or threats of violence, contact the police immediately."
+        android:id="@+id/textView2"
+        android:layout_weight="0.05" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:textColor="#000000"
+        android:text="Be Firm!"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Denounce their behaviour with a strong, clear voice: &quot;Do not comment on my body, that is harrassment.&quot; &quot;Do not stare at me like that, that is harrassment.&quot;"
+        android:id="@+id/textView3"
+        android:layout_weight="0.05" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText6"
+        android:textColor="#000000"
+        android:text="Don&apos;t engage!"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Harassers may try to engage you in further conversation or make fun of you. Do not prolong a verbal argument."
+        android:id="@+id/textView4"
+        android:layout_weight="0.05" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText7"
+        android:textColor="#000000"
+        android:text="Keep moving!"
+        android:layout_weight="0.05" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Try to reach a crowded place. Many times victims can fend of harassers by moving to crowded or new locations."
+        android:id="@+id/textView5"
+        android:layout_weight="0.05" />
 </LinearLayout>
