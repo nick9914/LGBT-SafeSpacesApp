@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="address"
+                android:text="Bldg # 081, University of Maryland"
                 android:id="@+id/textView6" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="20740"
+                android:text="20742"
                 android:id="@+id/textView9" />
 
         </LinearLayout>
