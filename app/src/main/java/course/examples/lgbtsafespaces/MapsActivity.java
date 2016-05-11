@@ -28,6 +28,8 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -82,7 +84,8 @@ public class MapsActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
         /*TODO: Implement Toolbar*/
         /*Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);*/
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);*/
         locationMap = new HashMap<>();
 
         // Create an instance of GoogleAPIClient.
@@ -131,9 +134,9 @@ public class MapsActivity extends AppCompatActivity
 
         mMap.setOnInfoWindowClickListener(this);
         /*TODO: Implement Toolbar*/
-        /*Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        Log.d("DEBUG", "toolbar height:" + myToolbar.getHeight());
-        mMap.setPadding(0, myToolbar.getHeight(), 0, 0 );*/
+
+        /*Log.d("DEBUG", "toolbar height:" + getSupportActionBar().getHeight());
+        mMap.setPadding(0, getSupportActionBar().getHeight(), 0, 0 );*/
 
 
     }
@@ -201,6 +204,14 @@ public class MapsActivity extends AppCompatActivity
             showMissingPermissionError();
             mPermissionDenied = false;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu, menu);
+
+        return true;
     }
 
     /**

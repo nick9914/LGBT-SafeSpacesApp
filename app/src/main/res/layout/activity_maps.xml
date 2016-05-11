@@ -31,15 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- <android.support.v7.widget.Toolbar
+         <!--<android.support.v7.widget.Toolbar
              android:id="@+id/my_toolbar"
              android:layout_width="match_parent"
              android:layout_height="?attr/actionBarSize"
-             android:background="#10000000"
+             android:background="#D0FFFFFF"
              android:elevation="4dp"
              android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+    </android.support.v7.widget.Toolbar>
+-->
         <LinearLayout
             android:id="@+id/info_button_linear_layout"
             android:layout_width="wrap_content"
