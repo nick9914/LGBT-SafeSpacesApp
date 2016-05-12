@@ -1,5 +1,5 @@
 # LGBT+-SafeSpacesApp
-Prototype 1.
+Prototype for our LGBT+ Safe Spaces app. Designed with API level 23. To install just drag apk into Android device. 
 
 ## Screen Shots Iteration 1
 <table class="tg">
