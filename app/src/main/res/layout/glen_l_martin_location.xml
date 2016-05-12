@@ -6,30 +6,28 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/imageView"
-            android:src="@drawable/placeholder" />
+            android:src="@drawable/glenn_L_Martin"
+            android:paddingLeft="5dp" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Glenn L Martin Hall"
-                android:textColor="#000000"
+                android:textColor="#673ab7"
                 android:id="@+id/textView" />
 
             <TextView
@@ -66,16 +64,19 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left">
+        android:gravity="left"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:text="Add Review"
-            android:id="@+id/reviewButton" />
+            android:id="@+id/reviewButton"
+            android:paddingLeft="5dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -91,29 +92,161 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:id="@+id/overallRating"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal" />
+
+
+
+
+<!--
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" >
+        android:layout_gravity="center_vertical"
+        android:paddingTop="10dp">
 
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="true"
-            android:id="@+id/overallRating" />
+            android:id="@+id/overallRating"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
+-->
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Great Bathroom!"
+                android:textSize="20dp"
+                android:textColor="#9575cd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The bathroom was very accessible, and private. No one asked any questions or gave any bad looks"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Only for students"
+                android:textSize="20dp"
+                android:textColor="#9575cd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Warning, this bathroom is only accessible to students"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Felt very safe"
+                android:textSize="20dp"
+                android:textColor="#9575cd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="easy to find, and felt very safe using it!"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Best location ever"
+                android:textSize="20dp"
+                android:textColor="#9575cd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="if you are a computer engineering student, this is the best location you will find"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clean and Safe"
+                android:textSize="20dp"
+                android:textColor="#9575cd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bathroom was pretty clean and safe"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!--<LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical" >
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="5dp">
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView" />
     </LinearLayout>
-
+-->
 </LinearLayout>
