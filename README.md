@@ -4,14 +4,10 @@ Prototype 1.
 ## Screen Shots Iteration 1
 <table class="tg">
 <tr>
-    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6146961/14621962/ab3ef4c2-0594-11e6-8f43-a9ba2addc25d.png" height="35%"></td>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6146961/14621971/b8ae45e0-0594-11e6-98ed-09773375a4c6.png" height="35%"></td>
-  </tr>
-  <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6146961/14621967/b2512fa0-0594-11e6-8566-609fde2b66ba.png" height="35%"></td>
-        <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/14653388/cade47d0-0646-11e6-98ee-e9d87b3dc5ff.png" height="35%"></td>
   </tr>
-    <tr>
+<tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/14653389/cae2483a-0646-11e6-99ce-5f19f28329bf.png" height="35%"></td>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053470/db0da754-12d0-11e6-9ebc-0c953f7d5cb9.png" height="35%"></td>
   </tr>
@@ -25,7 +21,7 @@ Prototype 1.
   </tr>
 </table>
 
-## Screen Shots Iteration 1
+## Screen Shots Iteration 2
 <table class="tg">
    <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061160/00bddfe4-1300-11e6-875f-dd0ad0933921.png" height="35%"></td>
