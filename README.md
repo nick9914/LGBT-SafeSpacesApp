@@ -9,11 +9,7 @@ Prototype 1.
   </tr>
 <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/14653389/cae2483a-0646-11e6-99ce-5f19f28329bf.png" height="35%"></td>
-    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053470/db0da754-12d0-11e6-9ebc-0c953f7d5cb9.png" height="35%"></td>
-  </tr>
-   <tr>
-    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053486/e5bfd2bc-12d0-11e6-90d8-0188b0333575.png" height="35%"></td>
-    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053496/f01c3368-12d0-11e6-90dd-eaf2e0434994.png" height="35%"></td>
+     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053486/e5bfd2bc-12d0-11e6-90d8-0188b0333575.png" height="35%"></td>
   </tr>
   <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053501/f5db02d4-12d0-11e6-94c1-10f503a7932c.png" height="35%"></td>
