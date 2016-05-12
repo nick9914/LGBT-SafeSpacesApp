@@ -28,7 +28,7 @@ public class GlenLMartinLocation extends AppCompatActivity {
             }
         });
 
-        //Home button functionality
+        //Cancel button functionality
         final Button homeButton = (Button) findViewById(R.id.homeButton);
         assert homeButton != null;
         homeButton.setOnClickListener(new View.OnClickListener() {

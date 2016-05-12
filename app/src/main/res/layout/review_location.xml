@@ -28,7 +28,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:id="@+id/locationImage"
-            android:src="@drawable/glenn_L_Martin" />
+            android:src="@drawable/glenn_l_martin" />
 
     </LinearLayout>
 
@@ -65,8 +65,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to Map"
-        android:id="@+id/homeButton"
+        android:text="Cancel"
+        android:id="@+id/cancelButton"
         android:paddingTop="10dp"
         android:textColor="#000000" />
 

@@ -13,7 +13,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/imageView"
-            android:src="@drawable/glenn_L_Martin"
+            android:src="@drawable/glenn_l_martin"
             android:paddingLeft="5dp" />
 
         <LinearLayout
@@ -99,7 +99,8 @@
         android:id="@+id/overallRating"
         android:paddingLeft="5dp"
         android:paddingTop="10dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:rating="4" />
 
 
 

@@ -27,8 +27,6 @@ public class ReviewLocation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userExit();
-                //TODO
-                //Submit button also needs to do other things (send information back to database)
             }
         });
 
@@ -42,6 +40,17 @@ public class ReviewLocation extends AppCompatActivity {
                 //Rating bar logic here
             }
         });
+
+        //Cancel button functionality
+        final Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        assert cancelButton != null;
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
 
 

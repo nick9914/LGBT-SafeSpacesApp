@@ -244,7 +244,7 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //LGBTLocation Name: marker.getTitle()
-        Intent intent = new Intent(getApplicationContext(), StampLocation.class);
+        Intent intent = new Intent(getApplicationContext(), GlenLMartinLocation.class);
         startActivity(intent);
 
 
