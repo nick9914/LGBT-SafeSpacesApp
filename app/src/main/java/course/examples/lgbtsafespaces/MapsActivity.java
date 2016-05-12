@@ -297,6 +297,12 @@ public class MapsActivity extends AppCompatActivity
         //TODO stub
     }
 
+    public void addLocationButtonClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), AddLocation.class);
+        startActivity(intent);
+
+    }
+
     private int dpToPx(int dp) {
         DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
         int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
