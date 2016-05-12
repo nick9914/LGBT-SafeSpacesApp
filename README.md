@@ -23,11 +23,10 @@ Prototype 1.
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15053501/f5db02d4-12d0-11e6-94c1-10f503a7932c.png" height="35%"></td>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061136/b59d6872-12ff-11e6-83ed-f85cab2d25c4.png" height="35%"></td>
   </tr>
-  </table>
-  
-  ## Screen Shots Iteration 1
-  
-  <table class="tg">
+</table>
+
+## Screen Shots Iteration 1
+<table class="tg">
    <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061160/00bddfe4-1300-11e6-875f-dd0ad0933921.png" height="35%"></td>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061475/14bc1296-1304-11e6-880e-eb269e15c8da.png" height="35%"></td>
