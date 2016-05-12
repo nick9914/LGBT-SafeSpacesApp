@@ -1,8 +1,7 @@
 # LGBT+-SafeSpacesApp
 Prototype 1.
 
-## Screen Shots
-
+## Screen Shots Iteration 1
 <table class="tg">
 <tr>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6146961/14621962/ab3ef4c2-0594-11e6-8f43-a9ba2addc25d.png" height="35%"></td>
@@ -25,7 +24,8 @@ Prototype 1.
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061136/b59d6872-12ff-11e6-83ed-f85cab2d25c4.png" height="35%"></td>
   </tr>
   </table>
-  ### Iteration 2
+  
+  ## Screen Shots Iteration 1
   
   <table class="tg">
    <tr>
