@@ -11,7 +11,7 @@
         android:textSize="40dp"
         android:layout_gravity="center_horizontal"
         android:paddingTop="10dp"
-        android:textColor="#9575cd" />
+        android:textColor="#673ab7" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -75,9 +75,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="What this location offers:"
-            android:textColor="#9575cd"
+            android:textColor="#673ab7"
             android:id="@+id/exposition1"
             android:paddingTop="25dp"
             android:layout_gravity="center_horizontal"
