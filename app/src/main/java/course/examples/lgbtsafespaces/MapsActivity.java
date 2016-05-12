@@ -244,7 +244,7 @@ public class MapsActivity extends AppCompatActivity
     public void onInfoWindowClick(Marker marker) {
         //Start new Activity
         //LGBTLocation Name: marker.getTitle()
-        Intent intent = new Intent(getApplicationContext(), StampLocation.class);
+        Intent intent = new Intent(getApplicationContext(), GlenLMartinLocation.class);
         startActivity(intent);
 
 
@@ -295,6 +295,12 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         //TODO stub
+    }
+
+    public void addLocationButtonClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), AddLocation.class);
+        startActivity(intent);
+
     }
 
     private int dpToPx(int dp) {
