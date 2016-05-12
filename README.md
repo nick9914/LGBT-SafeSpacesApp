@@ -27,4 +27,7 @@ Prototype 1.
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061160/00bddfe4-1300-11e6-875f-dd0ad0933921.png" height="35%"></td>
     <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15061475/14bc1296-1304-11e6-880e-eb269e15c8da.png" height="35%"></td>
   </tr>
+     <tr>
+    <td class="tg-031e"><img src="https://cloud.githubusercontent.com/assets/6181897/15200593/40a1978a-17b6-11e6-9245-2e99ff64f44a.png" height="35%"></td>
+  </tr>
 </table>
